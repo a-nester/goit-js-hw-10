@@ -1,0 +1,16 @@
+.li-item {
+    width: 250px;
+    border-style: none;
+    border-radius: 4px;
+    padding-left: 3px;
+    margin-bottom: 3px;
+    transition:
+        transform .2s .05s,
+        box-shadow .1s .05s;
+}
+
+.li-item:hover {
+    transform: scale(1.03);
+    box-shadow: 3px 3px grey;
+    background-color: rgb(237, 237, 237);
+}

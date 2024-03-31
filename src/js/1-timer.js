@@ -12,7 +12,8 @@ let timerHours = document.querySelector('span[data-hours]');
 let timerMinutes = document.querySelector('span[data-minutes]');
 let timerSeconds = document.querySelector('span[data-seconds]');
 let timerId = 0;
-// startBtn.disabled = true;
+
+startBtn.disabled = true;
 
 const options = {
   enableTime: true,
@@ -22,13 +23,14 @@ const options = {
   onClose(selectedDates) {
     userSelectedDate = selectedDates[0];
     if (userSelectedDate.getTime() <= Date.now()) {
-      iziToast.show({
+      iziToast.error({
           title: 'Error',
-          titleColor: 'Red',
+          titleColor: 'White',
           message: 'Please choose a date in the future',
-        position: 'topRight', // bottomRight, bottomLeft, topRight, topLeft, topCenter, bottomCenter, center
+          messageColor: 'White',
+          backgroundColor: 'Red',
+        position: 'topRight'
 });
-        // window.alert('Please choose a date in the future');
       startBtn.disabled = true;
       return;
     }
@@ -36,7 +38,7 @@ const options = {
   },
 };
 
-flatpickr(dateInput, options); // flatpickr
+flatpickr(dateInput, options); 
 
 startBtn.addEventListener('click', () => {
     timerId = setInterval(showTimer, 1000);
@@ -60,21 +62,15 @@ function showTimer() {
 }
 
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
   const day = hour * 24;
 
-  // Remaining days
   const days = Math.floor(ms / day);
-  // Remaining hours
   const hours = Math.floor((ms % day) / hour);
-  // Remaining minutes
   const minutes = Math.floor(((ms % day) % hour) / minute);
-  // Remaining seconds
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
-
   return { days, hours, minutes, seconds };
 }
 

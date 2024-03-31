@@ -14,3 +14,8 @@
     box-shadow: 3px 3px grey;
     background-color: rgb(237, 237, 237);
 }
+
+.item-link {
+    display: block;
+    text-decoration: none;
+}

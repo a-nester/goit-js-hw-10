@@ -3,15 +3,16 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-const startBtn = document.querySelector('button');
+const startBtn = document.querySelector('button[data-start]');
 const dateInput = document.querySelector('#datetime-picker');
 
-let userSelectedDate = {};
+let userSelectedDate = null;
+let timerId = null;
 let timerDays = document.querySelector('span[data-days]');
 let timerHours = document.querySelector('span[data-hours]');
 let timerMinutes = document.querySelector('span[data-minutes]');
 let timerSeconds = document.querySelector('span[data-seconds]');
-let timerId = 0;
+
 
 startBtn.disabled = true;
 
@@ -55,7 +56,6 @@ function showTimer() {
     timerSeconds.textContent = addLeadingZero(restTime.seconds);
   } else {
       clearInterval(timerId);
-      startBtn.disabled = false;
       dateInput.disabled = false;
     return;
   }
